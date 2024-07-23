@@ -22,6 +22,17 @@ html, body {
     margin-top: 70px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+.logo {
+    width: 150px;
+    height: 150px;
+    position: fixed;
+    margin: 5% auto;
+    margin-top: 5px;
+    left: 0;
+    right: 0;
 }
 
 input {
@@ -29,18 +40,24 @@ input {
 }
 
 input[type="date"] {
-    padding: 12px 20px;
+    padding: 6px 10px;
 }
 
 select {
     border-radius: 5px;
-    padding: 12px 20px;
+    padding: 6px 10px;
 }
 
 .formTitle {
     position: relative;
     top: 0px;
     left: 20px;
+}
+
+.formTable {
+    margin: 0;
+    margin-top: 50px;
+    display: block;
 }
 
 .formFieldLabel {
@@ -50,20 +67,20 @@ select {
 .reportType {
     background-color: white;
 }
-/*
-.selectOption {
-    appearance: none;
-    outline: none;
-    cursor: pointer;
 
-    color: white;
-    background-color: antiquewhite;
-}*/
+.inputDiv {
+    display:flex;
+    flex-direction:column;
+}
+
+td {
+    width: 40%; 
+}
 
 .details {
     border-radius: 5px;
     padding: 2px;
-    width: 500px;
+    width: 90%;
     height: 200px;
 }
 
