@@ -1,0 +1,6 @@
+.formContainer {
+    width: 80%;
+    background-color:aqua;
+    border: 10px solid rgb(0, 0, 255);
+    margin: auto;
+}
