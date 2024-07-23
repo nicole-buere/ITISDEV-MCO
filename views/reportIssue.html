@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Report an issue</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../css/index.css">
     </head>
     <body>
         <div class="formContainer">
@@ -12,7 +12,7 @@
                     <tr>
                         <td>
                             <label for="reportType" class="formFieldLabel">Type:</label>
-                            <select class="reportType" name="reportType">
+                            <select required class="reportType" name="reportType">
                                 <option hidden disabled selected value class="selectOption">Select an option</option>
                                 <option class="selectOption" value="sample1">Sample1</option>
                                 <option class="selectOption" value="sample2">Sample2</option>
@@ -20,6 +20,21 @@
                                 <option class="selectOption" value="sample4">Sample4</option>
                                 <option class="selectOption" value="sample5">Sample5</option>
                             </select>
+                        </td>
+                        <td>
+                            <label for="discoveryDate" class="formFieldLabel">Date of Discovery:</label>
+                            <input required type="date" name="discoveryDate"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="details" class="formFieldLabel">Details<label>
+                            <input required type="text" name="details"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            
                         </td>
                     </tr>
                 </table>
