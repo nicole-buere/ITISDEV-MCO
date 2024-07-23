@@ -29,7 +29,7 @@
                 <br>
                 <input type="submit" value="Login" id="login">
                 <p id="registertext">
-                    Don't have an account? <a href="register.php">Sign up here</a>
+                    Don't have an account? <a href="sign-up.php">Sign up here</a>
                 </p>
             </form>
         </div>
