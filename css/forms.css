@@ -15,7 +15,6 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: left;
-    justify-content: center; /* Center items vertically */
     width: 1248px;
     height: 550px;
     background-color: rgba(255, 255, 255, 0.6); /* White with 60% opacity */
@@ -25,10 +24,23 @@ html, body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+input {
+    border-radius: 5px;
+}
+
+input[type="date"] {
+    padding: 12px 20px;
+}
+
+select {
+    border-radius: 5px;
+    padding: 12px 20px;
+}
+
 .formTitle {
     position: relative;
     top: 0px;
-    left: 10px;
+    left: 20px;
 }
 
 .formFieldLabel {
@@ -48,10 +60,18 @@ html, body {
     background-color: antiquewhite;
 }*/
 
+.details {
+    border-radius: 5px;
+    padding: 2px;
+    width: 500px;
+    height: 200px;
+}
+
 .submitButton {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 10px;
+    display:block;
     width: 250px;
     height: 30px;
     color: white;
