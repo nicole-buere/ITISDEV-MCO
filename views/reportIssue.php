@@ -1,6 +1,8 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>Report an issue</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <div class="formContainer">
@@ -14,6 +16,7 @@
                     <option value="sample4">Sample4</option>
                     <option value="sample5">Sample5</option>
                 </select>
+                
                 <input type="submit" value="Submit Report"></input>
             </form>
         </div>
