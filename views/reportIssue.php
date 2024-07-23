@@ -6,7 +6,7 @@
     </head>
     <body>
         <div class="formContainer">
-            <h1>Report an Issue</h1>
+            <h1 class="formTitle">Report an Issue</h1>
             <form method="POST">
                 <label for="reportType">Type:</label>
                 <select name="reportType">

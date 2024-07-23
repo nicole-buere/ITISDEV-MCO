@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Report an issue</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="formContainer">
+            <h1 class="formTitle">Report an Issue</h1>
+            <form method="POST">
+                <table class="formTable">
+                    <tr>
+                        <td>
+                            <label for="reportType" class="formFieldLabel">Type:</label>
+                            <select class="reportType" name="reportType">
+                                <option hidden disabled selected value class="selectOption">Select an option</option>
+                                <option class="selectOption" value="sample1">Sample1</option>
+                                <option class="selectOption" value="sample2">Sample2</option>
+                                <option class="selectOption" value="sample3">Sample3</option>
+                                <option class="selectOption" value="sample4">Sample4</option>
+                                <option class="selectOption" value="sample5">Sample5</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                
+                <input type="submit" value="Submit Report"></input>
+            </form>
+        </div>
+    </body>
+</html>
