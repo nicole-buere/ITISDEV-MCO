@@ -43,6 +43,10 @@ input[type="date"] {
     padding: 6px 10px;
 }
 
+input[type="file"] {
+    padding: 6px 10px;
+}
+
 select {
     border-radius: 5px;
     padding: 6px 10px;
