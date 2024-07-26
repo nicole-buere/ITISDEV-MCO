@@ -1,0 +1,115 @@
+@import url(https://fonts.googleapis.com/css?family=Inter);
+
+body {
+    font-family: 'Inter';
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+}
+
+header {
+    background-color: #fff;
+    color: black;
+    padding: 10px 0;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #000000; /* line below the header */
+    width: 95%; /* Adjust the width of the line */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logo-container {
+    display: flex; /* Use flexbox to align items horizontally */
+    align-items: center; /* Vertically center the items */
+}
+
+.header-logo {
+    width: 90px; /* Set the width of the logo */
+    height: auto; /* Maintain the aspect ratio of the logo */
+}
+
+.first-button {
+    background-color: #fff;
+    color: black;
+    border: none; /* Remove default button styling */
+    cursor: pointer;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 10%;
+    margin-left: 5px;
+}
+
+.second-button {
+    background-color: #1F628E;
+    color: white;
+    border: none; /* Remove default button styling */
+    cursor: pointer;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 10%;
+    margin-left: 5px;
+}
+
+.second-button:hover {
+    background-color: #184c6e;
+}
+
+main {
+    padding: 50px;
+   
+}
+
+.main-background{
+    background-image: url('../assets/background.jpg');
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-position: 50% 20px; /* Positions the image */
+    background-size: 95%; /* Ensures the image fits within the element without being cropped */
+}
+
+.top-section { 
+    background-color: #f6f6f6;
+    background-position: 50% 20px;
+    text-align: center;
+    align-content: center;
+}
+
+.main-logo {
+    width: 150px; /* Set the width of the logo */
+    height: auto; /* Maintain the aspect ratio of the logo */
+}
+
+.bottom-section{
+    display: flex;
+}
+
+.left-section{
+    align-content: flex-end;
+}
+
+.right-section{
+    align-content: flex-start;
+}
+
+footer {
+    background-color: #1F628E;
+    color: white;
+    padding: 10px -10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.left-text {
+    float: left;
+    padding: 0 20px;
+}
+
+.centered-footer-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+}
