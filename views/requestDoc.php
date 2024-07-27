@@ -35,7 +35,7 @@
                         <td>
                             <div class="inputDiv">
                                 <label for="contactNO" class="formFieldLabel">Contact Number</label>
-                                <input required type="text" name="contactNO"></input>
+                                <input required type="number" name="contactNO"></input>
                             </div>
                         </td>
                         <td>
