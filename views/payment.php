@@ -91,6 +91,13 @@
         <input type="email" id="email" name="email" required>
         <br>
 
+        <div id="addressFields">
+            <h2>Shipping Address Details</h2>
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address">
+            <br>
+        </div>
+
         <button type="submit">Submit Payment</button>
     </form>
 </body>

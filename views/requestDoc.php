@@ -8,7 +8,7 @@
         <div class="formContainer">
             <h1 class="formTitle">Request a Document</h1>
             <img src="../assets/logo-noname.png" alt="logo no name" class="logo">
-            <form method="POST">
+            <form method="POST" action="payment.php">
                 <table class="formTable">
                     <tr>
                         <td>
@@ -100,7 +100,7 @@
                     </tr>
                 </table>
 
-                <input type="submit" class="submitButton" value="Submit Report"></input>
+                <input type="submit" class="submitButton" value="Proceed to Payment"></input>
             </form>
         </div>
     </body>
