@@ -41,7 +41,7 @@
                         <td>
                             <div class="inputDiv">
                                 <label for="email" class="formFieldLabel">Email</label>
-                                <input required type="text" name="email"></input>
+                                <input required type="email" name="email"></input>
                             </div>
                         </td>
                     </tr>

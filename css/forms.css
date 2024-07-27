@@ -25,6 +25,14 @@ html, body {
     padding: 10px;
 }
 
+.centerDiv {
+    position: fixed;
+    margin: 5% auto;
+    margin-top: 5px;
+    left: 0;
+    right: 0;
+}
+
 .logo {
     width: 150px;
     height: 150px;
