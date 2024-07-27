@@ -8,7 +8,7 @@
         <div class="formContainer">
             <h1 class="formTitle">Request a Document</h1>
             <img src="../assets/logo-noname.png" alt="logo no name" class="logo">
-            <form method="POST">
+            <form method="POST" action="payment.php">
                 <table class="formTable">
                     <tr>
                         <td>
@@ -35,13 +35,13 @@
                         <td>
                             <div class="inputDiv">
                                 <label for="contactNO" class="formFieldLabel">Contact Number</label>
-                                <input required type="text" name="contactNO"></input>
+                                <input required type="number" name="contactNO"></input>
                             </div>
                         </td>
                         <td>
                             <div class="inputDiv">
                                 <label for="email" class="formFieldLabel">Email</label>
-                                <input required type="text" name="email"></input>
+                                <input required type="email" name="email"></input>
                             </div>
                         </td>
                     </tr>
@@ -100,7 +100,7 @@
                     </tr>
                 </table>
 
-                <input type="submit" class="submitButton" value="Submit Report"></input>
+                <input type="submit" class="submitButton" value="Proceed to Payment"></input>
             </form>
         </div>
     </body>
