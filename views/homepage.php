@@ -1,4 +1,4 @@
-<!-- for the homepage -->
+<!--homepage -->
 <!DOCTYPE html>
 <html>
 <head>

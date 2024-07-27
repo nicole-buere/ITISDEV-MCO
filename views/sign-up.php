@@ -1,4 +1,3 @@
-<!-- this is the sign up page -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,11 +8,56 @@
     <div class="signup-box">
         <div class="greeting">
             <h1>Create your account</h1>
+            <p>All fields are required, you cannot proceed to the next step if incomplete</p>
         </div>
 
-        <!-- sign up form -->
-        <div class="credentials">
-            <form>
+        <div class="status-bar">
+            <div class="status-icon">
+                <img src="../assets/step1-inprog.png" alt="step 1 in progress" class="icon" id="step1-icon"> 
+                <span id="step1-status">Step 1: In Progress</span>
+            </div>
+            <div class="status-line"></div>
+            <div class="status-icon">
+                <img src="../assets/step2-inprog.png" alt="step 2" class="icon" id="step2-icon">
+                <span id="step2-status">Step 2: Not Started</span>
+            </div>
+        </div>
+
+        <div id="step-1" class="step active">
+            <div class="credentials">
+                <h3>Log in Details</h3>
+                <div class="row">
+                    <div class="form-group">
+                        <label>Role</label>
+                        <div class="role-options">
+                            <input type="radio" id="user" name="role" value="user" required>
+                            <label for="user">User</label>
+                            <input type="radio" id="admin" name="role" value="admin" required>
+                            <label for="admin">Admin</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm_password">Confirm Password</label>
+                        <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm your password" required>
+                    </div>
+                </div>
+                <button type="button" id="next-btn" onclick="nextStep(2)" disabled>Next</button>
+            </div>
+        </div>
+
+        <div id="step-2" class="step">
+            <form id="signup-form">
+                <h3>Personal Information</h3>
                 <div class="row">
                     <div class="form-group">
                         <label for="first_name">First Name</label>
@@ -39,8 +83,6 @@
                         </select>
                     </div>
                 </div>
-
-                <!-- Additional rows -->
                 <div class="row">
                     <div class="form-group">
                         <label for="sex">Sex</label>
@@ -65,7 +107,6 @@
                         <input type="date" id="dob" name="dob" required>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="form-group">
                         <label for="region">Region</label>
@@ -80,10 +121,74 @@
                         <input type="text" id="municipality" name="municipality" required>
                     </div>
                 </div>
-
-                <button type="submit">Sign Up</button>
+                <button type="button" onclick="prevStep(1)">Previous</button>
+                <button type="submit" id="signup-btn" disabled>Sign Up</button>
             </form>
         </div>
     </div>
+
+    <script>
+        function nextStep(step) {
+            if (validateStep1()) {
+                document.querySelectorAll('.step').forEach(function(el) {
+                    el.classList.remove('active');
+                });
+                document.getElementById('step-' + step).classList.add('active');
+                updateStatusBar(step);
+            } else {
+                alert("All fields are required and passwords must match.");
+            }
+        }
+
+        function prevStep(step) {
+            document.querySelectorAll('.step').forEach(function(el) {
+                el.classList.remove('active');
+            });
+            document.getElementById('step-' + step).classList.add('active');
+            updateStatusBar(step);
+        }
+
+        function updateStatusBar(step) {
+            if (step === 2) {
+                document.getElementById('step1-icon').src = '../assets/step1-done.png';
+                document.getElementById('step2-icon').src = '../assets/step2-inprog.png';
+                document.getElementById('step1-status').textContent = 'Step 1: Completed';
+                document.getElementById('step2-status').textContent = 'Step 2: In Progress';
+            } else {
+                document.getElementById('step1-icon').src = '../assets/step1-inprog.png';
+                document.getElementById('step2-icon').src = '../assets/step2.png';
+                document.getElementById('step1-status').textContent = 'Step 1: In Progress';
+                document.getElementById('step2-status').textContent = 'Step 2: Not Started';
+            }
+        }
+
+        function validateStep1() {
+            const role = document.querySelector('input[name="role"]:checked');
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+
+            return role && email && password && confirmPassword && (password === confirmPassword);
+        }
+
+        function enableNextButton() {
+            const nextButton = document.getElementById('next-btn');
+            nextButton.disabled = !validateStep1();
+        }
+
+        function enableSignupButton() {
+            const form = document.getElementById('signup-form');
+            const isValid = form.checkValidity();
+            document.getElementById('signup-btn').disabled = !isValid;
+        }
+
+        document.querySelectorAll('#step-1 input').forEach(function(input) {
+            input.addEventListener('input', enableNextButton);
+        });
+
+        document.querySelectorAll('#step-2 input, #step-2 select').forEach(function(input) {
+            input.addEventListener('input', enableSignupButton);
+        });
+    </script>
 </body>
 </html>
