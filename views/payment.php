@@ -25,8 +25,8 @@
     <div class="formContainer">
         <h1 class="formTitle">Payment</h1>
         <img src="../assets/logo-noname.png" alt="logo no name" class="logo">
-        <div class="centerDiv">
-            <form action="process_payment.php" method="POST" action="hopepage.php">
+        <!--<div class="centerDiv"> -->
+            <form action="process_payment.php" method="POST" action="hopepage.php" class="centerForm">
                 <label for="paymentMethod">Payment Method:</label>
                 <select id="paymentMethod" name="paymentMethod" onchange="showPaymentFields()" required>
                     <option value="" disabled selected>Select a payment method</option>
@@ -103,7 +103,7 @@
 
                 <button class="submitButton" type="submit">Submit Payment</button>
             </form>
-        </div>
+        <!--</div> -->
     </div>
 </body>
 </html>

@@ -18,7 +18,21 @@ html, body {
     width: 1248px;
     height: 550px;
     background-color: rgba(255, 255, 255, 0.6); /* White with 60% opacity */
-    margin: auto; /* Center the login box */
+    margin: auto;
+    margin-top: 70px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+.formContainerCenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1248px;
+    height: 550px;
+    background-color: rgba(255, 255, 255, 0.6); /* White with 60% opacity */
+    margin: auto;
     margin-top: 70px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -26,11 +40,8 @@ html, body {
 }
 
 .centerDiv {
-    position: fixed;
-    margin: 5% auto;
-    margin-top: 5px;
-    left: 0;
-    right: 0;
+    position: absolute;
+    left: 50%;
 }
 
 .logo {
