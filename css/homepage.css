@@ -1,115 +1,149 @@
-@import url(https://fonts.googleapis.com/css?family=Inter);
+@import url('https://fonts.googleapis.com/css?family=Inter');
 
-body {
-    font-family: 'Inter';
+html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
+    font-family: 'Inter', sans-serif;
     background-color: #fff;
 }
 
-header {
-    background-color: #fff;
-    color: black;
-    padding: 10px 0;
-    text-align: center;
+body {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1; /* Ensures the main content takes up remaining space */
+}
+
+.text-box {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    border-bottom: 1px solid #000000; /* line below the header */
-    width: 95%; /* Adjust the width of the line */
+    justify-content: center;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    padding: 20px;
+    max-width: 80%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.top-section {
+    margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
-}
-
-.logo-container {
-    display: flex; /* Use flexbox to align items horizontally */
-    align-items: center; /* Vertically center the items */
-}
-
-.header-logo {
-    width: 90px; /* Set the width of the logo */
-    height: auto; /* Maintain the aspect ratio of the logo */
-}
-
-.first-button {
-    background-color: #fff;
-    color: black;
-    border: none; /* Remove default button styling */
-    cursor: pointer;
-    padding: 10px 15px;
-    font-size: 16px;
-    border-radius: 10%;
-    margin-left: 5px;
-}
-
-.second-button {
-    background-color: #1F628E;
-    color: white;
-    border: none; /* Remove default button styling */
-    cursor: pointer;
-    padding: 10px 15px;
-    font-size: 16px;
-    border-radius: 10%;
-    margin-left: 5px;
-}
-
-.second-button:hover {
-    background-color: #184c6e;
-}
-
-main {
-    padding: 50px;
-   
-}
-
-.main-background{
-    background-image: url('../assets/background.jpg');
-    background-repeat: no-repeat; /* Prevents the image from repeating */
-    background-position: 50% 20px; /* Positions the image */
-    background-size: 95%; /* Ensures the image fits within the element without being cropped */
-}
-
-.top-section { 
-    background-color: #f6f6f6;
-    background-position: 50% 20px;
-    text-align: center;
-    align-content: center;
-}
-
-.main-logo {
-    width: 150px; /* Set the width of the logo */
-    height: auto; /* Maintain the aspect ratio of the logo */
-}
-
-.bottom-section{
+    align-items: center;
+    width: 95%;
+    height: auto;
+    background-image: url('../assets/background.png');
+    background-size: cover;
+    background-position: center;
     display: flex;
+    justify-content: center;
+    padding: 60px 0;
 }
 
-.left-section{
-    align-content: flex-end;
+.text-box h3 {
+    font-size: 2em;
+    margin: 0;
 }
 
-.right-section{
-    align-content: flex-start;
+.text-box h4 {
+    font-size: 1.5em;
+    margin: 10px 0;
 }
 
-footer {
-    background-color: #1F628E;
-    color: white;
-    padding: 10px -10px;
-    position: fixed;
-    bottom: 0;
+.text-box p {
+    font-size: 1em;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.service {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+}
+
+.service h2 {
+    color: #1F628E;
+}
+
+.row-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     width: 100%;
 }
 
-.left-text {
-    float: left;
-    padding: 0 20px;
+.info-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 20px;
+    width: 45%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    text-align: center;
 }
 
-.centered-footer-text {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
+.img-box {
+    margin-bottom: 10px;
+}
+
+.img-box img {
+    width: 80px;
+    height: 80px;
+}
+
+.description h4 {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.description p {
+    font-size: 1em;
+    margin: 5px 0;
+    color: #333;
+}
+
+.about-cityease {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-cityease .text-content {
+    flex: 1;
+    text-align: left;
+    padding-right: 20px;
+}
+
+.about-cityease h2 {
+    color: #1F628E;
+    margin-bottom: 10px;
+}
+
+.about-cityease p {
+    font-size: 1em;
+    margin: 10px 0;
+}
+
+.about-cityease img {
+    flex: 1;
+    max-width: 100%;
+    border-radius: 10px;
 }

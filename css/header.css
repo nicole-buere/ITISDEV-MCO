@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css?family=Inter');
+
+/* Header styling */
+header {
+    background-color: #fff;
+    color: black;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #000;
+    width: 95%;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Logo container styling */
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Header logo styling */
+.header-logo {
+    width: 90px;
+    height: auto;
+}
+
+/* Navigation styling */
+nav {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav > div,
+nav > a {
+    margin: 0 15px;
+}
+
+.first-button {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+}
+
+.first-button:hover {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+/* Dropdown styling */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: #fff;
+    color: black;
+    padding: 5px 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 200px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 1;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #f0f0f0;
+}
+
+/* Profile dropdown styling */
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.profile-dropdown .dropbtn {
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.profile-dropdown img {
+    width: 50px;
+    height: auto;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.profile-dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0; /* Align the dropdown to the right side of the image */
+    background-color: #fff;
+    min-width: 200px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 1;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.profile-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.profile-dropdown .dropdown-content a {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+}
+
+.profile-dropdown .dropdown-content a i {
+    margin-right: 10px;
+}

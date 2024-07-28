@@ -1,0 +1,22 @@
+/* css for whole website's footer */
+.footer {
+    background-color: #1F628E;
+    color: white;
+    padding: 10px 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px; /* Adjust height as needed */
+    font-family: 'Inter', sans-serif;
+}
+
+.left-text {
+    padding: 0 20px;
+}
+
+.centered-footer-text {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0;
+}
