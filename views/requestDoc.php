@@ -16,11 +16,11 @@
                                 <label for="reportType" class="formFieldLabel">Type:</label>
                                 <select required class="reportType" name="reportType">
                                     <option hidden disabled selected value class="selectOption">Select an option</option>
-                                    <option class="selectOption" value="sample1">Sample1</option>
-                                    <option class="selectOption" value="sample2">Sample2</option>
-                                    <option class="selectOption" value="sample3">Sample3</option>
-                                    <option class="selectOption" value="sample4">Sample4</option>
-                                    <option class="selectOption" value="sample5">Sample5</option>
+                                    <option class="selectOption" value="barangayClearance">Barangay Clearance</option>
+                                    <option class="selectOption" value="barangayID">Barangay ID</option>
+                                    <option class="selectOption" value="barangayCertificateOfResidency">Barangay Certificate of Residency</option>
+                                    <option class="selectOption" value="firstTimeJobseekerCertificate">First Time Jobseeker Certificate</option>
+                                    <option class="selectOption" value="barangayBusinessPermit">Barangay Business Permit</option>
                                 </select>
                             </div>
                         </td>
