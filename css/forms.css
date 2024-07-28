@@ -40,16 +40,8 @@ html, body {
 }
 
 .centerDiv {
-    display: flex;
-    flex-direction: column;
-    width: 648px;
-    height: auto;
-    background-color: rgba(255, 255, 255, 0.6);
-    margin: auto;
-    margin-top: 100px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    position: absolute;
+    left: 50%;
 }
 
 .logo {
