@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css?family=Inter');
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffffb2;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #24b47e;
+    width: 100%;
+    padding: 20px 0;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-logo {
+    max-width: 200px;
+    height: auto;
+}
+
+.amount-pay, .payment-success {
+    text-align: center;
+    margin: 50px auto;
+    padding: 20px;
+    max-width: 400px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.amount-pay h1, .payment-success h1 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.amount-pay h2 {
+    color: #24b47e;
+    margin-bottom: 20px;
+}
+
+.amount-pay hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+.amount-pay p, .payment-success p {
+    color: #666;
+    margin: 10px 0;
+}
+
+.pay-button, .redirect-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #24b47e;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.pay-button:hover, .redirect-button:hover {
+    background-color: #1a8c5c;
+}
+
+.success-pay {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+}
