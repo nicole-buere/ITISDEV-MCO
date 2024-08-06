@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bind_param("sssssss", $reportType, $discoveryDate, $details, $region, $province, $municipality, $email);
 
             if ($stmt->execute()) {
-                $reportId = $stmt->insert_id; // Get the last inserted ID
+                $reportId = $stmt->insert_id;
                 $message = "Report submitted successfully. Report ID: " . $reportId;
             } else {
                 $message = "Execute Error: " . $stmt->error;
@@ -225,8 +225,7 @@ $conn->close();
         document.getElementById('region').addEventListener('change', function() {
             var region = this.value;
             var provinceSelect = document.getElementById('province');
-            
-            // Clear existing options
+
             provinceSelect.innerHTML = '<option value="" selected disabled>Select a province</option>';
             
             var provinces = {
@@ -261,3 +260,4 @@ $conn->close();
     </script>
 </body>
 </html>
+
