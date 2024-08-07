@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css?family=Inter');
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.formTitle {
+    margin-bottom: 20px;
+    color: #004aad;
+}
+
+.formContainer {
+    background-color: white;
+    padding: 20px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.centerForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.centerForm label {
+    margin-top: 10px;
+}
+
+.centerForm input, .centerForm select {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.centerForm .submitButton {
+    background-color: #004aad;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.centerForm .submitButton:hover {
+    background-color: #00337f;
+}
+
+.paymentFields {
+    display: none;
+    margin-top: 20px;
+}
+
+footer {
+    background-color: #004aad;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}

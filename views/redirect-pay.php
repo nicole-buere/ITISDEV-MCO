@@ -19,7 +19,7 @@
         <h2>₱20.00</h2>
         <hr>
         <p>Payment for processing fee</p>
-        <p><strong>ITEM NAME:</strong> Document: [insert chosen document]</p>
+        <p><strong>ITEM NAME:</strong> Document Request in CityEase</p>
         <button class="pay-button" onclick="processPayment()">Pay</button>
     </div>
 

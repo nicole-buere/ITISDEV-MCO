@@ -50,8 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['email'] = $email;
                 $_SESSION['role'] = $role;
 
-                // Redirect to homepage
-                header("Location: homepage.php");
+                // Redirect based on role
+                if ($role === 'admin') {
+                    header("Location: ../views/admin-homepage.php");
+                } else {
+                    header("Location: ../views/homepage.php");
+                }
                 exit();
             } else {
                 $message = "Error: " . $stmt->error;

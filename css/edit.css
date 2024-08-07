@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Inter');
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #fff;
+}
+
+/* Center the formContainerCenter div */
+.formContainerCenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 600px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Style the form title */
+.formTitle {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Style the success and error messages */
+.success {
+    color: green;
+    margin-bottom: 10px;
+}
+
+.error {
+    color: red;
+    margin-bottom: 10px;
+}
+
+/* Style the form group */
+.form-group {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+/* Style the form labels */
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Style the form inputs */
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Style the submit button */
+.submitButton {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submitButton:hover {
+    background-color: #0056b3;
+}

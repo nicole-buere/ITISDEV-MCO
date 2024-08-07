@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile - CityEase</title>
-    <link rel="stylesheet" href="../css/homepage.css">
+    <link rel="stylesheet" href="../css/edit.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/forms.css"> <!-- Link to the forms CSS -->

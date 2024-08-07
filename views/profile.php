@@ -29,7 +29,7 @@ if ($result->num_rows === 1) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CityEase Profile</title>
-    <link rel="stylesheet" href="../css/homepage.css">
+    <link rel="stylesheet" href="../css/profile.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
 </head>
@@ -60,10 +60,12 @@ if ($result->num_rows === 1) {
         </div>
     </header>
     <div class="main-content">
-        <div class="top-section">
-            <div class="text-box">
-                <img src="../assets/profile-user.png" alt="profile" class="user-pic">
-                <h4><?php echo htmlspecialchars($user['firstname'] . ' ' . $user['lastname']); ?></h4>
+        <div class="profile-container">
+            <div class="profile-header">
+                <img src="../assets/profile-user.png" alt="profile" class="profile-picture">
+                <h3><?php echo htmlspecialchars($user['firstname'] . ' ' . $user['lastname']); ?></h3>
+            </div>
+            <div class="profile-details">
                 <p><strong>Email:</strong> <?php echo htmlspecialchars($email); ?></p>
                 <p><strong>Middle Name:</strong> <?php echo htmlspecialchars($user['middlename']); ?></p>
                 <p><strong>Suffix:</strong> <?php echo htmlspecialchars($user['suffix']); ?></p>
@@ -74,8 +76,8 @@ if ($result->num_rows === 1) {
                 <p><strong>Province:</strong> <?php echo htmlspecialchars($user['province']); ?></p>
                 <p><strong>Municipality:</strong> <?php echo htmlspecialchars($user['municipality']); ?></p>
                 <p><strong>Role:</strong> <?php echo htmlspecialchars($user['role']); ?></p>
-                <a href="edit_profile.php" class="edit-button">Edit Profile</a>
             </div>
+            <a href="edit_profile.php" class="edit-profile-button">Edit Profile</a>
         </div>
     </div>
     <footer class="footer">
