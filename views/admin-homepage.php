@@ -81,7 +81,7 @@
                                         <td>" . $row["requestReason"] . "</td>
                                         <td>" . $row["requesterName"] . "</td>
                                         <td>" . $row["contactNO"] . "</td>
-                                        <td>" . $row["governmentID"] . "</td>
+                                        <td><a href='../assets/GovernmentID.png' download>Download ID</a></td>
                                         <td>" . $row["region"] . "</td>
                                         <td>" . $row["province"] . "</td>
                                         <td>" . $row["municipality"] . "</td>
