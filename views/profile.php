@@ -1,9 +1,34 @@
+<?php
+session_start();
+require_once '../includes/db.php'; // Ensure the database connection is included
+
+// Check if the user is logged in
+if (!isset($_SESSION['email'])) {
+    header("Location: index.php"); // Redirect to login page if not logged in
+    exit();
+}
+
+$email = $_SESSION['email'];
+
+// Prepare and execute the SQL statement to fetch user details
+$stmt = $conn->prepare("SELECT firstname, middlename, lastname FROM signup WHERE email = ?");
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows === 1) {
+    $user = $result->fetch_assoc();
+} else {
+    die("User not found.");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CityEase Homepage</title>
+    <title>CityEase Profile</title>
     <link rel="stylesheet" href="../css/homepage.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
@@ -38,10 +63,10 @@
     <div class="main-content">
         <div class="top-section">
             <div class="text-box">
-		<img src="../assets/profile-user.png" alt="profile" class="user-pic">
-                <h4>Display Full Name</h4>
+                <img src="../assets/profile-user.png" alt="profile" class="user-pic">
+                <h4><?php echo htmlspecialchars($user['firstname'] . ' ' . $user['lastname']); ?></h4>
                 <br>
-                <p>@username123</p>
+                <p><?php echo htmlspecialchars($email); ?></p>
             </div>
         </div>
     </div>

@@ -1,4 +1,8 @@
-<!-- this is the log in page -->
+<?php
+session_start();
+$errors = isset($_SESSION['errors']) ? $_SESSION['errors'] : array();
+session_unset(); // Clear errors after displaying
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,17 +11,14 @@
 </head>
 <body>
     <div class="login-box">
-        <!-- contains logo and greeting -->
         <div class="greeting">
             <img src="../assets/logo-noname.png" alt="logo no name" class="logo">
             <h1>Welcome to CityEase!</h1>
         </div>
-
-        <!-- log in form -->
         <div class="credentials">
             <form action="login.php" method="post">
-                <label for="username">Email</label>
-                <input type="text" name="username" id="username" placeholder="Enter email address" required>
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" placeholder="Enter email address" required>
                 <br>
                 <label for="password">Password</label>
                 <div class="password-container">
@@ -27,16 +28,18 @@
                     </button>
                 </div>
                 <br>
-                <input type="submit" value="Login" id="login">
+                <input type="submit" name="login" value="Login" id="login">
                 <p id="registertext">
                     Don't have an account? <a href="sign-up.php">Sign up here</a>
                 </p>
+                <?php if (!empty($errors['login'])): ?>
+                    <p id="login-error" style="color: red;"><?= $errors['login'] ?></p>
+                <?php endif; ?>
             </form>
         </div>
     </div>
 
     <script>
-        // script for the show/hide button (eye icon) for password
         document.getElementById('toggle-password').addEventListener('click', function() {
             var passwordField = document.getElementById('password');
             var toggleIcon = document.getElementById('toggle-icon');

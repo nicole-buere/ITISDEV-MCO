@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sql = "INSERT INTO signup (role, email, password, firstname, middlename, lastname, suffix, sex, civilstatus, dateofbirth, region, province, municipality)
                 VALUES ('$role', '$email', '$password', '$firstname', '$middlename', '$lastname', '$suffix', '$sex', '$civilstatus', '$dob', '$region', '$province', '$municipality')";
         if ($conn->query($sql) === TRUE) {
-            header("Location: reportIssue.php");
+            header("Location: homepage.php");
             exit();
         } else {
             $message = "Error: " . $sql . "<br>" . $conn->error;
