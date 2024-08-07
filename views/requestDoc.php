@@ -1,10 +1,14 @@
 <?php
-session_start(); // Start the session
+session_start();
+require_once '../includes/db.php'; // Include the database connection
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "dbcityease";
+// Check if the user is logged in
+if (!isset($_SESSION['email'])) {
+    header("Location: index.php"); // Redirect to login page if not logged in
+    exit();
+}
+
+$email = $_SESSION['email'];
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -17,19 +21,19 @@ if ($conn->connect_error) {
 $message = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $contactNO = $_POST['contactNO'] ?? '';
-    $requestDoc = $_POST['requestDoc'] ?? '';
-    $requestReason = $_POST['requestReason'] ?? '';
-    $deliveryAddress = $_POST['deliveryAddress'] ?? '';
-
-    // Fetch user details from signup table based on the email stored in the session
-    $email = $_SESSION['email'] ?? '';
+    $contactNO = trim($_POST['contactNO'] ?? '');
+    $requestDoc = trim($_POST['requestDoc'] ?? '');
+    $requestReason = trim($_POST['requestReason'] ?? '');
+    $deliveryAddress = trim($_POST['deliveryAddress'] ?? '');
 
     if (empty($contactNO) || empty($requestDoc) || empty($requestReason) || empty($deliveryAddress) || empty($email)) {
         $message = "All fields are required.";
     } else {
-        $sqlFetch = "SELECT region, province, municipality, firstname, middlename, lastname FROM signup WHERE email = '$email'";
-        $resultFetch = $conn->query($sqlFetch);
+        // Fetch user details
+        $sqlFetch = $conn->prepare("SELECT region, province, municipality, firstname, middlename, lastname FROM signup WHERE email = ?");
+        $sqlFetch->bind_param("s", $email);
+        $sqlFetch->execute();
+        $resultFetch = $sqlFetch->get_result();
 
         if ($resultFetch->num_rows > 0) {
             $row = $resultFetch->fetch_assoc();
@@ -40,13 +44,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Check if file was uploaded
             if (isset($_FILES['governmentID']) && $_FILES['governmentID']['error'] == 0) {
-                // Read the file content
                 $fileContent = file_get_contents($_FILES['governmentID']['tmp_name']);
                 
                 if ($fileContent !== false) {
+                    // Insert request details into the database
                     $sql = "INSERT INTO request (contactNO, region, province, municipality, email, requestDoc, governmentID, requestReason, requesterName, deliveryAddress)
                              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
                     
                     if ($stmt = $conn->prepare($sql)) {
                         $null = NULL;
@@ -54,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $stmt->send_long_data(6, $fileContent);
                         
                         if ($stmt->execute()) {
-                            $requestId = $stmt->insert_id; // Get the last inserted ID
+                            $requestId = $stmt->insert_id;
                             $message = "Request submitted successfully. Request ID: " . $requestId;
 
                             // Store requestId in session
@@ -62,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                             // Redirect to payment.php after successful submission
                             header("Location: payment.php");
-                            exit(); // Ensure no further code is executed
+                            exit();
                         } else {
                             $message = "Execute Error: " . $stmt->error;
                         }
@@ -80,6 +83,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $message = "No user details found.";
         }
+
+        $sqlFetch->close();
     }
 }
 
@@ -126,7 +131,7 @@ $conn->close();
     <div class="main-content">     
         <h1 class="formTitle">Request a Document <span><?php echo isset($_SESSION['requestId']) ? 'Request ID: ' . $_SESSION['requestId'] : ''; ?></span></h1>
         <?php if ($message): ?>
-            <p class="message" style="color: <?php echo strpos($message, 'Error:') === 0 ? 'red' : 'green'; ?>;"><?php echo $message; ?></p>
+            <p class="message" style="color: <?php echo strpos($message, 'Error:') === 0 ? 'red' : 'green'; ?>;"><?php echo htmlspecialchars($message); ?></p>
         <?php endif; ?>
         <p class="note">Take note that your profile information will be considered as the requester's information.</p>
         <form method="POST" action="" enctype="multipart/form-data">

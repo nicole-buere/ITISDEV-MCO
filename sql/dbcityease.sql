@@ -124,7 +124,9 @@ VALUES
 ('2024-08-01', '09234567890', 'Cebu', 'Cebu', 'Mandaue City', 'bob.brown@example.com', 'Certificate of Residence', 'ID654321', 'Needed for job application.', 'Bob Brown', '5678 Oak Avenue, Mandaue City', 'pending');
 
 
-
+INSERT INTO `signup` (`firstname`, `middlename`, `lastname`, `suffix`, `email`, `password`, `sex`, `civilstatus`, `dateofbirth`, `region`, `province`, `municipality`, `role`) VALUES
+('Alice', 'Middle', 'Jones', '', 'alice.jones@example.com', 'password123', 'Female', 'Single', '1990-01-01', 'Metro Manila', 'Metro Manila', 'Quezon City', 'User'),
+('Bob', 'Middle', 'Brown', '', 'bob.brown@example.com', 'password123', 'Male', 'Single', '1985-05-15', 'Cebu', 'Cebu', 'Mandaue City', 'User');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
