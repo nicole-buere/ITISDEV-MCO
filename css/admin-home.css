@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css?family=Inter');
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa; 
+}
+
+.main-content {
+    padding: 40px;
+}
+
+.reqs{
+    border: 1px solid #dee2e6; 
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 8px; /* Rounded corners for a modern look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    background-color: #fff;
+}
+.greeting h1 {
+    margin: 0;
+    font-size: 2em; /* Larger heading for emphasis */
+}
+
+.greeting p {
+    margin-top: 10px;
+    font-size: 1.2em; /* Larger text for readability */
+}
+
+.service h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.reqs .box {
+    margin-bottom: 20px;
+}
+
+.reqs .box h3 {
+    margin: 0;
+    color: #1c1a36;
+}
+
+.table {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid#00193d
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color:#acc1d8;
+}
+
+select {
+    padding: 8px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 1em;
+}
+
+table select {
+    width: 100%;
+    box-sizing: border-box;
+}

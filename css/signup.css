@@ -5,7 +5,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Prevent scrollbars from appearing */
+    overflow: auto; /* Allow scrolling */
     background: linear-gradient(-180deg, #1070E8, #D1DDEB);
     font-family: 'Inter';
 }
@@ -17,7 +17,7 @@ html, body {
     height: auto;
     background-color: rgba(255, 255, 255, 0.6);
     margin: auto;
-    margin-top: 100px;
+    margin-top: 10px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -26,26 +26,40 @@ html, body {
 .greeting h1 {
     font-size: 24px;
     text-align: left;
+    text-transform: uppercase; 
 }
 
-.credentials, form {
+.credentials, .personal-info {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
 }
 
-.credentials h3, form h3 {
+.credentials h3, .personal-info h3 {
     text-align: left;
     width: 100%;
+    display: flex;
+    align-items: center;
+    font-weight: bold; /* Make headings bold */
+    margin-bottom: 20px; /* Space below the headings */
 }
 
-.step {
-    display: none;
+.step-icons {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between icon and text */
+    margin-bottom: 10px; /* Space below the step icons */
 }
 
-.step.active {
-    display: block;
+.step-icons img {
+    width: 20px;
+    height: 20px;
+}
+
+.step-icons span {
+    font-size: 14px;
+    color: #333;
 }
 
 .row {
@@ -58,7 +72,8 @@ html, body {
 .form-group {
     flex: 1;
     margin-right: 10px;
-    min-width: 150px;
+    min-width: 650px; /* Increase the minimum width for longer input boxes */
+    box-sizing: border-box;
 }
 
 .form-group:last-child {
@@ -76,7 +91,7 @@ html, body {
 .form-group input[type="email"],
 .form-group input[type="password"],
 .form-group select {
-    width: 100%;
+    width: 100%; /* Full width of the parent container */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -88,7 +103,7 @@ html, body {
 .role-options {
     display: flex;
     align-items: center;
-    gap: 20px; /* Adjust space between the radio buttons */
+    gap: 20px; /* Space between radio buttons */
 }
 
 .role-options input[type="radio"] {
