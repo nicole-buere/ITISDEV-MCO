@@ -35,7 +35,8 @@ CREATE TABLE `report` (
   `region` varchar(45) NOT NULL,
   `province` varchar(45) NOT NULL,
   `municipality` varchar(45) NOT NULL,
-  `email` char(45) NOT NULL
+  `email` char(45) NOT NULL,
+  PRIMARY KEY (`reportid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -46,6 +47,7 @@ CREATE TABLE `report` (
 
 CREATE TABLE `request` (
   `requestid` int(10) NOT NULL AUTO_INCREMENT,
+  `requestDate` date NOT NULL,
   `contactNO` varchar(15) NOT NULL,
   `region` varchar(45) NOT NULL,
   `province` varchar(45) NOT NULL,
@@ -82,22 +84,6 @@ CREATE TABLE `signup` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Indexes for dumped tables
---
-
---
--- Indexes for table `report`
---
-ALTER TABLE `report`
-  ADD PRIMARY KEY (`reportid`);
-
---
--- Indexes for table `request`
---
-ALTER TABLE `request`
-  ADD PRIMARY KEY (`requestid`);
-
---
 -- Indexes for table `signup`
 --
 ALTER TABLE `signup`
@@ -118,6 +104,27 @@ ALTER TABLE `report`
 --
 ALTER TABLE `request`
   MODIFY `requestid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+ALTER TABLE `request`
+ADD COLUMN `status` VARCHAR(45) NOT NULL DEFAULT 'pending';
+
+ALTER TABLE `report`
+ADD COLUMN `status` VARCHAR(45) NOT NULL DEFAULT 'pending';
+
+-- Updated insert for report table with VARCHAR for email
+INSERT INTO `report` (`reportid`, `reportType`, `discoveryDate`, `details`, `region`, `province`, `municipality`, `email`, `status`)
+VALUES
+('111', 'Theft', '2024-08-01', 'A case of theft reported in the city center.', 'Metro Manila', 'Metro Manila', 'Makati', 'john.doe@example.com', 'pending'),
+('222', 'Vandalism', '2024-08-03', 'Graffiti reported on public property.', 'Cebu', 'Cebu', 'Cebu City', 'jane.smith@example.com', 'pending');
+
+-- Updated insert for request table
+INSERT INTO `request` (`requestDate`, `contactNO`, `region`, `province`, `municipality`, `email`, `requestDoc`, `governmentID`, `requestReason`, `requesterName`, `deliveryAddress`, `status`)
+VALUES
+('2024-08-01', '09123456789', 'Metro Manila', 'Metro Manila', 'Quezon City', 'alice.jones@example.com', 'Birth Certificate', 'ID123456', 'Requesting a copy for visa application.', 'Alice Jones', '1234 Maple Street, Quezon City', 'pending'),
+('2024-08-01', '09234567890', 'Cebu', 'Cebu', 'Mandaue City', 'bob.brown@example.com', 'Certificate of Residence', 'ID654321', 'Needed for job application.', 'Bob Brown', '5678 Oak Avenue, Mandaue City', 'pending');
+
+
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -23,7 +23,6 @@
             <img src="../assets/profile-user.png" alt="profile" class="profile dropbtn">
             <div class="dropdown-content">
                 <a href="../views/profile.php"><i class="fas fa-user"></i> View Profile</a>
-                <a href="../views/settings.php"><i class="fas fa-cog"></i> Profile Settings</a>
                 <a href="../views/index.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
         </div>
@@ -59,30 +58,55 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <!-- Placeholder info, should be fetched from SQL table -->
-                                <td>8/2/24</td>
-                                <td>123</td>
-                                <td>Birth Certificate</td>
-                                <td>Personal Use</td>
-                                <td>John Doe</td>
-                                <td>1234567890</td>
-                                <td>1234</td>
-                                <td>Region 1</td>
-                                <td>Province A</td>
-                                <td>Municipality B</td>
-                                <td>Home</td>
-                                <td>
-                                    <select name="status" id="status">
-                                        <option value="pending">Pending</option>
-                                        <option value="declined">Declined</option>
-                                        <option value="processing">Processing</option>
-                                        <option value="out_for_delivery">Out for Delivery</option>
-                                        <option value="completed">Completed</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <!-- Add more rows here as needed -->
+                            <?php
+                            // Database connection
+                            $conn = new mysqli("localhost", "root", "", "dbcityease");
+
+                            // Check connection
+                            if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                            }
+
+                            // Fetch document requests
+                            $sql = "SELECT * FROM request";
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                // Output data of each row
+                                while($row = $result->fetch_assoc()) {
+                                    echo "<tr>
+                                        <td>" . $row["requestDate"] . "</td>
+                                        <td>" . $row["requestid"] . "</td>
+                                        <td>" . $row["requestDoc"] . "</td>
+                                        <td>" . $row["requestReason"] . "</td>
+                                        <td>" . $row["requesterName"] . "</td>
+                                        <td>" . $row["contactNO"] . "</td>
+                                        <td>" . $row["governmentID"] . "</td>
+                                        <td>" . $row["region"] . "</td>
+                                        <td>" . $row["province"] . "</td>
+                                        <td>" . $row["municipality"] . "</td>
+                                        <td>" . $row["deliveryAddress"] . "</td>
+                                        <td>
+                                            <form method='POST' action='update_status.php'>
+                                                <input type='hidden' name='id' value='" . $row["requestid"] . "'>
+                                                <input type='hidden' name='type' value='request'>
+                                                <select name='status' id='status' onchange='this.form.submit()'>
+                                                    <option value='pending'" . ($row["status"] == 'pending' ? ' selected' : '') . ">Pending</option>
+                                                    <option value='declined'" . ($row["status"] == 'declined' ? ' selected' : '') . ">Declined</option>
+                                                    <option value='processing'" . ($row["status"] == 'processing' ? ' selected' : '') . ">Processing</option>
+                                                    <option value='out_for_delivery'" . ($row["status"] == 'out_for_delivery' ? ' selected' : '') . ">Out for Delivery</option>
+                                                    <option value='completed'" . ($row["status"] == 'completed' ? ' selected' : '') . ">Completed</option>
+                                                </select>
+                                            </form>
+                                        </td>
+                                    </tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='12'>No document requests found</td></tr>";
+                            }
+
+                            $conn->close();
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -97,7 +121,7 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Date of Request</th>
+                                <th>Date of Discovery</th>
                                 <th>Report ID</th>
                                 <th>Type of Incident</th>
                                 <th>Date of Incident</th>
@@ -111,28 +135,53 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <!-- Placeholder info, should be fetched from SQL table -->
-                                <td>8/2/24</td>
-                                <td>123</td>
-                                <td>Noise Complaint</td>
-                                <td>1/1/24</td>
-                                <td>10:00 AM</td>
-                                <td>John Doe</td>
-                                <td>Region 1</td>
-                                <td>Province A</td>
-                                <td>Municipality B</td>
-                                <td>Details of the incident here...</td>
-                                <td>
-                                    <select name="status" id="status">
-                                        <option value="pending">Pending</option>
-                                        <option value="declined">Declined</option>
-                                        <option value="responded">Responding</option>
-                                        <option value="resolved">Resolved</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <!-- Add more rows here as needed -->
+                            <?php
+                            // Database connection
+                            $conn = new mysqli("localhost", "root", "", "dbcityease");
+
+                            // Check connection
+                            if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                            }
+
+                            // Fetch reported issues
+                            $sql = "SELECT * FROM report";
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                // Output data of each row
+                                while($row = $result->fetch_assoc()) {
+                                    echo "<tr>
+                                        <td>" . htmlspecialchars($row["discoveryDate"]) . "</td>
+                                        <td>" . htmlspecialchars($row["reportid"]) . "</td>
+                                        <td>" . htmlspecialchars($row["reportType"]) . "</td>
+                                        <td>" . htmlspecialchars($row["discoveryDate"]) . "</td>
+                                        <td>--</td> <!-- Placeholder for Time of Incident if available -->
+                                        <td>" . htmlspecialchars($row["email"]) . "</td>
+                                        <td>" . htmlspecialchars($row["region"]) . "</td>
+                                        <td>" . htmlspecialchars($row["province"]) . "</td>
+                                        <td>" . htmlspecialchars($row["municipality"]) . "</td>
+                                        <td>" . htmlspecialchars($row["details"]) . "</td>
+                                        <td>
+                                            <form method='POST' action='update_status.php'>
+                                                <input type='hidden' name='id' value='" . htmlspecialchars($row["reportid"]) . "'>
+                                                <input type='hidden' name='type' value='report'>
+                                                <select name='status' id='status' onchange='this.form.submit()'>
+                                                    <option value='pending'" . ($row["status"] == 'pending' ? ' selected' : '') . ">Pending</option>
+                                                    <option value='declined'" . ($row["status"] == 'declined' ? ' selected' : '') . ">Declined</option>
+                                                    <option value='responded'" . ($row["status"] == 'responded' ? ' selected' : '') . ">Responded</option>
+                                                    <option value='resolved'" . ($row["status"] == 'resolved' ? ' selected' : '') . ">Resolved</option>
+                                                </select>
+                                            </form>
+                                        </td>
+                                    </tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='11'>No reported issues found</td></tr>";
+                            }
+
+                            $conn->close();
+                            ?>
                         </tbody>
                     </table>
                 </div>
