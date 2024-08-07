@@ -46,16 +46,16 @@ CREATE TABLE `report` (
 
 CREATE TABLE `request` (
   `requestid` int(10) NOT NULL AUTO_INCREMENT,
-  `contactnum` varchar(15) NOT NULL,
+  `contactNO` varchar(15) NOT NULL,
   `region` varchar(45) NOT NULL,
   `province` varchar(45) NOT NULL,
   `municipality` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
-  `doc_type` varchar(45) NOT NULL,
-  `governmentid` blob NOT NULL,
-  `request_reason` text NOT NULL,
-  `requester_name` varchar(100) NOT NULL,
-  `delivery_address` varchar(255) NOT NULL,
+  `requestDoc` varchar(45) NOT NULL,
+  `governmentID` blob NOT NULL,
+  `requestReason` text NOT NULL,
+  `requesterName` varchar(100) NOT NULL,
+  `deliveryAddress` varchar(255) NOT NULL,
   PRIMARY KEY (`requestid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

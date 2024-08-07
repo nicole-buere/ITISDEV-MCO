@@ -18,49 +18,67 @@ $message = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $contactNO = $_POST['contactNO'] ?? '';
-    $email = $_POST['email'] ?? '';
-    $region = $_POST['region'] ?? '';
-    $province = $_POST['province'] ?? '';
-    $municipality = $_POST['municipality'] ?? '';
     $requestDoc = $_POST['requestDoc'] ?? '';
     $requestReason = $_POST['requestReason'] ?? '';
-    $requesterName = $_POST['requesterName'] ?? '';
     $deliveryAddress = $_POST['deliveryAddress'] ?? '';
 
-    if (empty($contactNO) || empty($email) || empty($region) || empty($province) || empty($municipality) || empty($requestDoc) || empty($requestReason) || empty($requesterName) || empty($deliveryAddress)) {
+    // Fetch user details from signup table based on the email stored in the session
+    $email = $_SESSION['email'] ?? '';
+
+    if (empty($contactNO) || empty($requestDoc) || empty($requestReason) || empty($deliveryAddress) || empty($email)) {
         $message = "All fields are required.";
     } else {
-        // Check if file was uploaded
-        if (isset($_FILES['IDinput']) && $_FILES['IDinput']['error'] == 0) {
-            // Read the file content
-            $fileContent = file_get_contents($_FILES['IDinput']['tmp_name']);
+        $sqlFetch = "SELECT region, province, municipality, firstname, middlename, lastname FROM signup WHERE email = '$email'";
+        $resultFetch = $conn->query($sqlFetch);
 
-            $sql = "INSERT INTO request (contactnum, region, province, municipality, email, doc_type, governmentid, request_reason, requester_name, delivery_address)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        if ($resultFetch->num_rows > 0) {
+            $row = $resultFetch->fetch_assoc();
+            $region = $row['region'];
+            $province = $row['province'];
+            $municipality = $row['municipality'];
+            $requesterName = $row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['lastname'];
 
-            if ($stmt = $conn->prepare($sql)) {
-                $stmt->bind_param("ssssssbsss", $contactNO, $region, $province, $municipality, $email, $requestDoc, $fileContent, $requestReason, $requesterName, $deliveryAddress);
+            // Check if file was uploaded
+            if (isset($_FILES['governmentID']) && $_FILES['governmentID']['error'] == 0) {
+                // Read the file content
+                $fileContent = file_get_contents($_FILES['governmentID']['tmp_name']);
+                
+                if ($fileContent !== false) {
+                    $sql = "INSERT INTO request (contactNO, region, province, municipality, email, requestDoc, governmentID, requestReason, requesterName, deliveryAddress)
+                             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-                if ($stmt->execute()) {
-                    $requestId = $stmt->insert_id; // Get the last inserted ID
-                    $message = "Request submitted successfully. Request ID: " . $requestId;
+                    
+                    if ($stmt = $conn->prepare($sql)) {
+                        $null = NULL;
+                        $stmt->bind_param("ssssssbsss", $contactNO, $region, $province, $municipality, $email, $requestDoc, $null, $requestReason, $requesterName, $deliveryAddress);
+                        $stmt->send_long_data(6, $fileContent);
+                        
+                        if ($stmt->execute()) {
+                            $requestId = $stmt->insert_id; // Get the last inserted ID
+                            $message = "Request submitted successfully. Request ID: " . $requestId;
 
-                    // Store requestId in session
-                    $_SESSION['requestId'] = $requestId;
+                            // Store requestId in session
+                            $_SESSION['requestId'] = $requestId;
 
-                    // Redirect to payment.php after successful submission
-                    header("Location: payment.php");
-                    exit(); // Ensure no further code is executed
+                            // Redirect to payment.php after successful submission
+                            header("Location: payment.php");
+                            exit(); // Ensure no further code is executed
+                        } else {
+                            $message = "Execute Error: " . $stmt->error;
+                        }
+
+                        $stmt->close();
+                    } else {
+                        $message = "Prepare Error: " . $conn->error;
+                    }
                 } else {
-                    $message = "Execute Error: " . $stmt->error;
+                    $message = "Failed to read file content.";
                 }
-
-                $stmt->close();
             } else {
-                $message = "Prepare Error: " . $conn->error;
+                $message = "Failed to upload file. Error Code: " . ($_FILES['governmentID']['error'] ?? 'unknown');
             }
         } else {
-            $message = "Failed to upload file. Error Code: " . ($_FILES['IDinput']['error'] ?? 'unknown');
+            $message = "No user details found.";
         }
     }
 }
@@ -100,7 +118,6 @@ $conn->close();
             <img src="../assets/profile-user.png" alt="profile" class="profile dropbtn">
             <div class="dropdown-content">
                 <a href="../views/profile.php"><i class="fas fa-user"></i> View Profile</a>
-                <a href="../views/settings.php"><i class="fas fa-cog"></i> Profile Settings</a>
                 <a href="../views/index.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
         </div>
@@ -137,8 +154,8 @@ $conn->close();
                 </div>
 
                 <div class="form-group full-width">
-                    <label for="IDinput" class="formFieldLabel">Government ID <span class="sample">(e.g., Scanned Copy of Driver License, Passport)</span>:</label>
-                    <input type="file" name="IDinput" id="IDinput" class="fileInput" required>
+                    <label for="governmentID" class="formFieldLabel">Government ID <span class="sample">(e.g., Scanned Copy of Driver License, Passport)</span>:</label>
+                    <input type="file" name="governmentID" id="governmentID" class="fileInput" required>
                 </div>
 
                 <div class="form-group full-width">
