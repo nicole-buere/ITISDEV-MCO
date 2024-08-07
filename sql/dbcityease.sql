@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `report` (
   `reportid` int(10) NOT NULL,
-  `type` varchar(45) NOT NULL,
-  `dateofissuediscovery` date NOT NULL,
+  `reportType` varchar(45) NOT NULL,
+  `discoveryDate` date NOT NULL,
   `details` varchar(10000) NOT NULL,
   `region` varchar(45) NOT NULL,
   `province` varchar(45) NOT NULL,
@@ -45,14 +45,18 @@ CREATE TABLE `report` (
 --
 
 CREATE TABLE `request` (
-  `requestid` int(10) NOT NULL,
-  `contactnum` int(15) NOT NULL,
+  `requestid` int(10) NOT NULL AUTO_INCREMENT,
+  `contactnum` varchar(15) NOT NULL,
   `region` varchar(45) NOT NULL,
   `province` varchar(45) NOT NULL,
   `municipality` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
+  `doc_type` varchar(45) NOT NULL,
   `governmentid` blob NOT NULL,
-  `doc_type` varchar(45) NOT NULL
+  `request_reason` text NOT NULL,
+  `requester_name` varchar(100) NOT NULL,
+  `delivery_address` varchar(255) NOT NULL,
+  PRIMARY KEY (`requestid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
