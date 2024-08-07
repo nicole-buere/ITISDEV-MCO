@@ -6,6 +6,7 @@ $dbname = "dbcityease";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
+// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -33,13 +34,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($password !== $confirm_password) {
         $message = "Passwords do not match.";
     } else {
+        // Hash the password for security
+        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+
+        // Insert user data into the database
         $sql = "INSERT INTO signup (role, email, password, firstname, middlename, lastname, suffix, sex, civilstatus, dateofbirth, region, province, municipality)
-                VALUES ('$role', '$email', '$password', '$firstname', '$middlename', '$lastname', '$suffix', '$sex', '$civilstatus', '$dob', '$region', '$province', '$municipality')";
-        if ($conn->query($sql) === TRUE) {
-            header("Location: homepage.php");
-            exit();
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        if ($stmt = $conn->prepare($sql)) {
+            $stmt->bind_param("sssssssssssss", $role, $email, $hashed_password, $firstname, $middlename, $lastname, $suffix, $sex, $civilstatus, $dob, $region, $province, $municipality);
+
+            if ($stmt->execute()) {
+                // Set up session and log the user in
+                session_start();
+                $_SESSION['email'] = $email;
+                $_SESSION['role'] = $role;
+
+                // Redirect to homepage
+                header("Location: homepage.php");
+                exit();
+            } else {
+                $message = "Error: " . $stmt->error;
+            }
+
+            $stmt->close();
         } else {
-            $message = "Error: " . $sql . "<br>" . $conn->error;
+            $message = "Error preparing statement: " . $conn->error;
         }
     }
 }
@@ -58,7 +78,7 @@ $conn->close();
         <div class="greeting">
             <h1>CREATE YOUR ACCOUNT</h1>
             <?php if ($message): ?>
-                <p style="color: red;"><?php echo $message; ?></p>
+                <p style="color: red;"><?php echo htmlspecialchars($message); ?></p>
             <?php endif; ?>
         </div>
 
@@ -142,7 +162,7 @@ $conn->close();
                     <input type="date" id="dob" name="dob" required>
                 </div>
                 <div class="form-group">
-                <label for="region" class="formFieldLabel">Region:</label>
+                    <label for="region">Region:</label>
                     <select name="region" id="region" required>
                         <option value="" selected disabled>Select a region</option>
                         <!-- Add all regions -->
@@ -166,7 +186,7 @@ $conn->close();
                     </select>
                 </div>
                 <div class="form-group">
-                <label for="province" class="formFieldLabel">Province:</label>
+                    <label for="province">Province:</label>
                     <select name="province" id="province" required>
                         <option value="" selected disabled>Select a province</option>
                         <!-- Provinces will be populated dynamically based on selected region -->
@@ -183,8 +203,7 @@ $conn->close();
     </div>
 
     <script>
-
-            document.getElementById('region').addEventListener('change', function() {
+        document.getElementById('region').addEventListener('change', function() {
             var region = this.value;
             var provinceSelect = document.getElementById('province');
 
