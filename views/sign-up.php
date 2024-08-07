@@ -142,12 +142,35 @@ $conn->close();
                     <input type="date" id="dob" name="dob" required>
                 </div>
                 <div class="form-group">
-                    <label for="region">Region</label>
-                    <input type="text" id="region" name="region" required>
+                <label for="region" class="formFieldLabel">Region:</label>
+                    <select name="region" id="region" required>
+                        <option value="" selected disabled>Select a region</option>
+                        <!-- Add all regions -->
+                        <option value="NCR">National Capital Region (NCR)</option>
+                        <option value="CAR">Cordillera Administrative Region (CAR)</option>
+                        <option value="I">Ilocos Region</option>
+                        <option value="II">Cagayan Valley</option>
+                        <option value="III">Central Luzon</option>
+                        <option value="IV-A">CALABARZON</option>
+                        <option value="IV-B">MIMAROPA</option>
+                        <option value="V">Bicol Region</option>
+                        <option value="VI">Western Visayas</option>
+                        <option value="VII">Central Visayas</option>
+                        <option value="VIII">Eastern Visayas</option>
+                        <option value="IX">Zamboanga Peninsula</option>
+                        <option value="X">Northern Mindanao</option>
+                        <option value="XI">Davao Region</option>
+                        <option value="XII">SOCCSKSARGEN</option>
+                        <option value="CARAGA">Caraga</option>
+                        <option value="BARMM">Bangsamoro Autonomous Region in Muslim Mindanao (BARMM)</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="province">Province</label>
-                    <input type="text" id="province" name="province" required>
+                <label for="province" class="formFieldLabel">Province:</label>
+                    <select name="province" id="province" required>
+                        <option value="" selected disabled>Select a province</option>
+                        <!-- Provinces will be populated dynamically based on selected region -->
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="municipality">Municipality</label>
@@ -160,6 +183,43 @@ $conn->close();
     </div>
 
     <script>
+
+            document.getElementById('region').addEventListener('change', function() {
+            var region = this.value;
+            var provinceSelect = document.getElementById('province');
+
+            provinceSelect.innerHTML = '<option value="" selected disabled>Select a province</option>';
+            
+            var provinces = {
+                'NCR': ['Metro Manila'],
+                'CAR': ['Abra', 'Apayao', 'Benguet', 'Ifugao', 'Kalinga', 'Mountain Province'],
+                'I': ['Ilocos Norte', 'Ilocos Sur', 'La Union', 'Pangasinan'],
+                'II': ['Batanes', 'Cagayan', 'Isabela', 'Nueva Vizcaya', 'Quirino'],
+                'III': ['Aurora', 'Bataan', 'Bulacan', 'Nueva Ecija', 'Pampanga', 'Tarlac', 'Zambales'],
+                'IV-A': ['Batangas', 'Cavite', 'Laguna', 'Quezon', 'Rizal'],
+                'IV-B': ['Marinduque', 'Occidental Mindoro', 'Oriental Mindoro', 'Palawan', 'Romblon'],
+                'V': ['Albay', 'Camarines Norte', 'Camarines Sur', 'Catanduanes', 'Masbate', 'Sorsogon'],
+                'VI': ['Aklan', 'Antique', 'Capiz', 'Iloilo', 'Negros Occidental'],
+                'VII': ['Bohol', 'Cebu', 'Negros Oriental', 'Siquijor'],
+                'VIII': ['Biliran', 'Eastern Samar', 'Leyte', 'Northern Samar', 'Samar', 'Southern Leyte'],
+                'IX': ['Zamboanga del Norte', 'Zamboanga del Sur', 'Zamboanga Sibugay'],
+                'X': ['Bukidnon', 'Camiguin', 'Lanao del Norte', 'Misamis Occidental', 'Misamis Oriental'],
+                'XI': ['Davao de Oro', 'Davao del Norte', 'Davao del Sur', 'Davao Occidental', 'Davao Oriental'],
+                'XII': ['Cotabato', 'Sarangani', 'South Cotabato', 'Sultan Kudarat'],
+                'CARAGA': ['Agusan del Norte', 'Agusan del Sur', 'Dinagat Islands', 'Surigao del Norte', 'Surigao del Sur'],
+                'BARMM': ['Basilan', 'Lanao del Sur', 'Maguindanao', 'Sulu', 'Tawi-Tawi']
+            };
+            
+            if (provinces[region]) {
+                provinces[region].forEach(function(province) {
+                    var option = document.createElement('option');
+                    option.value = province;
+                    option.textContent = province;
+                    provinceSelect.appendChild(option);
+                });
+            }
+        });
+
         function validateForm() {
             const role = document.querySelector('input[name="role"]:checked');
             const email = document.getElementById('email').value;
