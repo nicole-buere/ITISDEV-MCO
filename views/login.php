@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
         // Error handling if the statement preparation fails
         die("Error preparing the statement: " . $conn->error);
     }
-
+}
     // Bind parameters and execute the statement
 require_once '../includes/db.php'; 
 
