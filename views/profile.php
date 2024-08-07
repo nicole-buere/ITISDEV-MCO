@@ -30,7 +30,6 @@
             <img src="../assets/profile-user.png" alt="profile" class="profile dropbtn">
             <div class="dropdown-content">
                 <a href="../views/profile.php"><i class="fas fa-user"></i> View Profile</a>
-                <a href="../views/settings.php"><i class="fas fa-cog"></i> Profile Settings</a>
                 <a href="../views/index.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
         </div>

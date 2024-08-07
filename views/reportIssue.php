@@ -166,7 +166,7 @@ $conn->close();
             <div class="form-row">
                 <div class="form-group half-width">
                     <label for="reportType" class="formFieldLabel">Type:</label>
-                    <input type="text" name="reportType" id="reportType" required>
+                    <input type="text" name="reportType" id="reportType" placeholder="e.g., infrastructure, environment, public safety" required>
                 </div>
                 <div class="form-group half-width">
                     <label for="discoveryDate" class="formFieldLabel">Date of Discovery:</label>
