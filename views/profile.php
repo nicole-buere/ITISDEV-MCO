@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../includes/db.php'; // Ensure the database connection is included
+require_once '../includes/db.php'; // Include the database connection
 
 // Check if the user is logged in
 if (!isset($_SESSION['email'])) {
@@ -11,7 +11,7 @@ if (!isset($_SESSION['email'])) {
 $email = $_SESSION['email'];
 
 // Prepare and execute the SQL statement to fetch user details
-$stmt = $conn->prepare("SELECT firstname, middlename, lastname FROM signup WHERE email = ?");
+$stmt = $conn->prepare("SELECT * FROM signup WHERE email = ?");
 $stmt->bind_param("s", $email);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -55,6 +55,7 @@ if ($result->num_rows === 1) {
             <img src="../assets/profile-user.png" alt="profile" class="profile dropbtn">
             <div class="dropdown-content">
                 <a href="../views/profile.php"><i class="fas fa-user"></i> View Profile</a>
+                <a href="../views/settings.php"><i class="fas fa-cog"></i> Profile Settings</a>
                 <a href="../views/index.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
         </div>
@@ -64,8 +65,17 @@ if ($result->num_rows === 1) {
             <div class="text-box">
                 <img src="../assets/profile-user.png" alt="profile" class="user-pic">
                 <h4><?php echo htmlspecialchars($user['firstname'] . ' ' . $user['lastname']); ?></h4>
-                <br>
-                <p><?php echo htmlspecialchars($email); ?></p>
+                <p><strong>Email:</strong> <?php echo htmlspecialchars($email); ?></p>
+                <p><strong>Middle Name:</strong> <?php echo htmlspecialchars($user['middlename']); ?></p>
+                <p><strong>Suffix:</strong> <?php echo htmlspecialchars($user['suffix']); ?></p>
+                <p><strong>Gender:</strong> <?php echo htmlspecialchars($user['sex']); ?></p>
+                <p><strong>Civil Status:</strong> <?php echo htmlspecialchars($user['civilstatus']); ?></p>
+                <p><strong>Date of Birth:</strong> <?php echo htmlspecialchars($user['dateofbirth']); ?></p>
+                <p><strong>Region:</strong> <?php echo htmlspecialchars($user['region']); ?></p>
+                <p><strong>Province:</strong> <?php echo htmlspecialchars($user['province']); ?></p>
+                <p><strong>Municipality:</strong> <?php echo htmlspecialchars($user['municipality']); ?></p>
+                <p><strong>Role:</strong> <?php echo htmlspecialchars($user['role']); ?></p>
+                <a href="edit_profile.php" class="edit-button">Edit Profile</a>
             </div>
         </div>
     </div>
