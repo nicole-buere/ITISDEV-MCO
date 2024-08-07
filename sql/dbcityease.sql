@@ -28,15 +28,19 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `report` (
-  `reportid` int(10) NOT NULL,
+  `reportid` int(10) NOT NULL AUTO_INCREMENT,
   `reportType` varchar(45) NOT NULL,
   `discoveryDate` date NOT NULL,
-  `details` varchar(10000) NOT NULL,
+  `timeOfIncident` time NOT NULL,
   `region` varchar(45) NOT NULL,
   `province` varchar(45) NOT NULL,
   `municipality` varchar(45) NOT NULL,
-  `email` char(45) NOT NULL
+  `details` varchar(10000) NOT NULL,
+  `involvedPersons` varchar(10000) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  PRIMARY KEY (`reportid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 -- --------------------------------------------------------
 
