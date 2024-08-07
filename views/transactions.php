@@ -1,11 +1,11 @@
- <!-- homepage for citizen -->
+<!-- shows all user's transactions -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CityEase Homepage</title>
-    <link rel="stylesheet" href="../css/homepage.css">
+    <link rel="stylesheet" href="../css/transactions.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
 </head>
@@ -38,11 +38,77 @@
     </header>
 
     <div class="main-content">
-        box
-        <br>
-        box
-        <br>
-        box
+        <h2>Your Transactions</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Request ID</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                // Database connection
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "dbcityease";
+
+                // Create connection
+                $conn = new mysqli($servername, $username, $password, $dbname);
+
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+
+                // Fetch user's email from session (assuming user is logged in and email is stored in session)
+                session_start();
+                $userEmail = $_SESSION['email'];
+
+                // Fetch transactions from report table
+                $reportSql = "SELECT reportid, reportType FROM report WHERE email='$userEmail'";
+                $reportResult = $conn->query($reportSql);
+
+                if ($reportResult->num_rows > 0) {
+                    // Output data for each row
+                    while($row = $reportResult->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $row["reportid"] . "</td>";
+                        echo "<td>Report</td>";
+                        echo "<td>" . $row["reportType"] . "</td>";
+                        echo "<td>Pending</td>";  // Replace with actual status if available
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='4'>No report transactions found.</td></tr>";
+                }
+
+                // Fetch transactions from request table
+                $requestSql = "SELECT requestid, requestDoc FROM request WHERE email='$userEmail'";
+                $requestResult = $conn->query($requestSql);
+
+                if ($requestResult->num_rows > 0) {
+                    // Output data for each row
+                    while($row = $requestResult->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $row["requestid"] . "</td>";
+                        echo "<td>Request</td>";
+                        echo "<td>" . $row["requestDoc"] . "</td>";
+                        echo "<td>Pending</td>";  // Replace with actual status if available
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='4'>No document request transactions found.</td></tr>";
+                }
+
+                // Close connection
+                $conn->close();
+                ?>
+            </tbody>
+        </table>
     </div>
 
     <footer class="footer">
