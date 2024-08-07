@@ -1,13 +1,13 @@
-<!-- homepage for citizen -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CityEase Homepage</title>
-    <link rel="stylesheet" href="../css/homepage.css">
+    <title>CityEase Admin Homepage</title>
+    <link rel="stylesheet" href="../css/admin-home.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/table.css">
 </head>
 <body>
     <header>
@@ -16,9 +16,8 @@
             <h2>CityEase</h2>
         </div>
         <nav>
-            <a class="first-button" href="../views/homepage.php">Home</a>
+            <a class="first-button" href="../views/admin-homepage.php">Home</a>
             <a class="first-button" href="../views/aboutus.php">About Us</a>
-            <a class="first-button" href="../views/Transactions.php">Manage Requests</a>
         </nav>
         <div class="dropdown profile-dropdown">
             <img src="../assets/profile-user.png" alt="profile" class="profile dropbtn">
@@ -31,56 +30,114 @@
     </header>
 
     <div class="main-content">
-        <div class="admin-top-section">
-            <div class="text-box">
-                <h3>Welcome to CityEase!</h3>
-                <h4>YOUR ONE-STOP PLATFORM FOR SEAMLESS COMMUNITY MANAGEMENT.</h4>
-                <br>
-                <p>At CityEase, we are dedicated to enhancing the efficiency and accessibility of local government services for</p>
-                <p>barangays across our city. Our mission is to streamline the way citizens interact with their local government,</p>
-                <p>making it easier to report issues, manage documents, and stay informed about community updates.</p>
-            </div>
+        <div class="greeting">
+            <h1>Welcome, Admin!</h1>
+            <p>Ready to make a difference today? Manage and respond to citizens' requests to keep our community thriving.</p>
         </div>
-
-        <div class="bottom-section">
-            <div class="service">
-                <h2>Manage Citizens' Requests</h2>
-                <div class="row-box">
-                    <!-- for request documents -->
-                    <div class="info-box">
-                        <div class="img-box">
-                            <img src="../assets/request.png" alt="Request Documents" class="profile">
-                        </div>
-                        <div class="description">
-                            <h4>Request Documents</h4>
-                            <p>Skip the trip to your barangay office and the long queues.</p>
-                            <p>Simply request all your essential documents with a few clicks right here!</p>
-                        </div>
-                    </div>
-                    <!-- for Report an Issue -->
-                    <div class="info-box">
-                        <div class="img-box">
-                            <img src="../assets/report.png" alt="Report an Issue" class="profile">
-                        </div>
-                        <div class="description">
-                            <h4>Report an Issue</h4>
-                            <p>No need to visit the barangay office to voice your concerns.</p>
-                            <p>Just click, report, and get a quick response to any issue in your community!</p>
-                        </div>
-                    </div>
-                </div>        
-            </div>
-
-            <div class="about-cityease">
-                <div class="text-content">
-                    <h2>CityEase</h2>
-                    <hr>
-                    <p>CityEase is your comprehensive platform for effortless community management. Our user-friendly interface empowers you to report issues, manage documents, and access local services with ease.</p>
-                    <p>Designed to enhance transparency and citizen engagement, CityEase connects you with your local government, ensuring your voice is heard and your needs are promptly addressed.</p>
-                    <p>Embrace efficient, accessible, and innovative governance solutions with CityEase, and help shape a responsive and connected community.</p>
+        <div class="service">
+            <!-- Document Requests Section -->
+            <div class="reqs">
+                <div class="box">
+                    <h3>Document Requests</h3>
                 </div>
-                <img src="../assets/logowtext.png" alt="CityEase Logo">
+                <div class="table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date of Request</th>
+                                <th>Request ID</th>
+                                <th>Type of Document</th>
+                                <th>Reason for Requesting</th>
+                                <th>Requester</th>
+                                <th>Contact Number</th>
+                                <th>Government ID</th>
+                                <th>Region</th>
+                                <th>Province</th>
+                                <th>Municipality</th>
+                                <th>Delivery Address</th>
+                                <th>Update Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <!-- Placeholder info, should be fetched from SQL table -->
+                                <td>8/2/24</td>
+                                <td>123</td>
+                                <td>Birth Certificate</td>
+                                <td>Personal Use</td>
+                                <td>John Doe</td>
+                                <td>1234567890</td>
+                                <td>1234</td>
+                                <td>Region 1</td>
+                                <td>Province A</td>
+                                <td>Municipality B</td>
+                                <td>Home</td>
+                                <td>
+                                    <select name="status" id="status">
+                                        <option value="pending">Pending</option>
+                                        <option value="declined">Declined</option>
+                                        <option value="processing">Processing</option>
+                                        <option value="out_for_delivery">Out for Delivery</option>
+                                        <option value="completed">Completed</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <!-- Add more rows here as needed -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
+            <!-- Reported Issues Section -->
+            <div class="reqs">
+                <div class="box">
+                    <h3>Reported Issues</h3>
+                </div>
+                <div class="table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date of Request</th>
+                                <th>Report ID</th>
+                                <th>Type of Incident</th>
+                                <th>Date of Incident</th>
+                                <th>Time of Incident</th>
+                                <th>Involved Person</th>
+                                <th>Region</th>
+                                <th>Province</th>
+                                <th>Municipality</th>
+                                <th>Narrative Details of Incident</th>
+                                <th>Update Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <!-- Placeholder info, should be fetched from SQL table -->
+                                <td>8/2/24</td>
+                                <td>123</td>
+                                <td>Noise Complaint</td>
+                                <td>1/1/24</td>
+                                <td>10:00 AM</td>
+                                <td>John Doe</td>
+                                <td>Region 1</td>
+                                <td>Province A</td>
+                                <td>Municipality B</td>
+                                <td>Details of the incident here...</td>
+                                <td>
+                                    <select name="status" id="status">
+                                        <option value="pending">Pending</option>
+                                        <option value="declined">Declined</option>
+                                        <option value="responded">Responding</option>
+                                        <option value="resolved">Resolved</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <!-- Add more rows here as needed -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </div>
     </div>
 
