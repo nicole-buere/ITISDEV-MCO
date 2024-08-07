@@ -25,7 +25,7 @@
     <div class="formContainer">
         <h1 class="formTitle">Payment</h1>
         <img src="../assets/logo-noname.png" alt="logo no name" class="logo">
-        <!--<div class="centerDiv"> -->
+        <!--div class="centerDiv"> -->
             <form action="process_payment.php" method="POST" action="hopepage.php" class="centerForm">
                 <label for="paymentMethod">Payment Method:</label>
                 <select id="paymentMethod" name="paymentMethod" onchange="showPaymentFields()" required>
@@ -69,7 +69,7 @@
                 <!-- maya Fields -->
                 <div id="mayaFields" style="display: none;">
                     <h2>Maya Details</h2>
-                    <label for="mayaNO">maya number:</label>
+                    <label for="mayaNO">Maya number:</label>
                     <input type="number" id="mayaNO" name="mayaNO">
                     <br>
                 </div>
@@ -101,7 +101,7 @@
                     <br>
                 </div>
 
-                <button class="submitButton" type="submit">Submit Payment</button>
+                <button class="submitButton" type="submit" style="margin-left: 10px">Submit Payment</button>
             </form>
         <!--</div> -->
     </div>
